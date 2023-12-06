@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+<title>
+    <h1>
+    <strong>
+        BUY STOCK
+        </strong>
+        </h1>
+    </title>
+    <p><h2>BUY STOCK</h2></p>
+    <form action="{{ url_for('buy') }}" method="post">
+    <p>
+        Symbol
+        <input id="symbol" name="symbol" placeholder="Symbol" type = "text" >
+    </p>
+    <p>
+        Shares
+        <input id="shares" name="shares" placeholder="Shares" type = "numeric" min ="0" >
+    </p>
+    <p>
+        <button class="btn btn-danger" type="submit">Submit Buy</button>
+    </p>
+
+    </form>
+{% endblock %}
+
+Code of my new SQL for buy:
+CREATE TABLE buy (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+user_id INTEGER NOT NULL, symbol TEXT NOT NULL , shares INTEGER NOT NULL,
+price INTEGER NOT NULL, time_of_buy DATATIME DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES users(id));

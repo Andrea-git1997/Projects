@@ -1,0 +1,25 @@
+
+h1{
+    background-color: #3498db; /* Blu */
+    color: #fff; /* Testo bianco su sfondo blu */
+    border: 1px solid #333; /* Bordo sottile nero */
+    padding: 20px;
+}
+
+
+
+
+
+body {
+    background-color: #fff;
+    color: #212529;
+    font-size: 1rem;
+    font-family : "Times New Roman", Times , serif;
+    font-weight: 400;
+    line-height: 1;
+    margin: 0;
+    text-align: left;
+}
+
+
+

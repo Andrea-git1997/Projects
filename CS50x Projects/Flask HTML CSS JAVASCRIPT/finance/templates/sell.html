@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+<title>
+    <h1>
+    <strong>
+        SELL STOCK
+        </strong>
+        </h1>
+    </title>
+    <p><h2>SELL STOCK</h2></p>
+    <form action="{{ url_for('sell') }}" method="post">
+    <p>
+        Symbol
+        <select name ="symbol"><input id="symbol" name="symbol" placeholder="Symbol" type = "text" >
+    </p>
+    <p>
+        Shares_to_Sell
+        <input id="shares" name="shares" placeholder="Shares" type = "number" min ="0" >
+    </p>
+    <p>
+        <button class="btn btn-warning" type="submit">Submit Sells</button>
+    </p>
+
+    </form>
+{% endblock %}

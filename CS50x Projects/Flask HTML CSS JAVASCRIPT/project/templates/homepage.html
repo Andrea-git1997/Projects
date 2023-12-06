@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+<style>
+    h1 {
+        font-family: "Arial Black", sans-serif;
+        color: red;
+    }
+
+    h2 {
+        font-family: "Times New Roman", sans-serif;
+        color: green;
+    }
+
+    .link-success {
+    color: black;
+    /* Aggiungi eventuali altre proprietà CSS desiderate */
+    }
+</style>
+
+<title>
+    <h1>
+    <strong>
+        HOME PAGE
+        </strong>
+        </h1>
+    </title>
+    <p><h1>HOME PAGE</h1></p>
+    <form action="/home" method="get">
+    <p><h2>WELCOME TO WAREHOUSE MANAGEMENT!</h2></p>
+    <p><p><h4> What do you want to do in this software?</h4></p></p>
+    <p><p><p>
+        <h5><a href="{{ url_for('upload') }}" class="link-success">Upload supplies</a></h5>
+        <h5><a href="{{ url_for('allocation') }}"class="link-success">Allocation of supplies to construction sites</a></h5>
+        
+
+    </p></p></p>
+    <p><p><h4> What do you want to do you want to visualize?</h4></p></p>
+    <p><p><p>
+        <h5><a href="{{ url_for('database') }}" class="link-success">Database</a></h5>
+        <h5><a href="{{ url_for('history') }}"class="link-success">History</a></h5>
+        <h5><a href="{{ url_for('balance') }}"class="link-success">Split</a></h5>
+
+    </p></p></p>
+
+    </form>
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+
+<style>
+    h1 {
+        font-family: "Arial Black", sans-serif;
+        color: red;
+    }
+
+    h2 {
+        font-family: "Times New Roman", sans-serif;
+        color: green;
+    }
+
+    .alert{
+
+        padding: 5px;
+        background-color: orange; /* color red*/
+        color: withe;
+        text-align:center;
+        display: none; /*don't show the alert initialy*/
+    }
+</style>
+
+
+
+<title>
+    <h1>
+    <strong>
+        UPLOAD
+        </strong>
+        </h1>
+    </title>
+    <form action="{{ url_for('upload') }}" method="post">
+    <p><h1>UPLOAD</h1></p>
+    <p><h2>UPLOAD SUPPLIES!</h2></p>
+    <p><p>
+        <input type ="text" name = "barcode" id= "barcode" placeholder="Barcode">
+    </p></p>
+    <p><p>
+        <input type ="text" name = "materials" id= "materials" placeholder="Materials">
+    </p></p>
+    <p><p>
+        <input type ="number" min ="0"name = "quantities" id= "quantities" placeholder="Quantities">
+    </p></p>
+    <p><p>
+    </p></p>
+    <p><p>
+        <input type="text" pattern="[0-9]+([,\.][0-9]+)?" min = "0" name = "price" id= "price" placeholder="Price">
+    </p></p>
+    <p><p>
+       <select name="action" id="action" required>
+    <option value="upload" selected>Upload</option>
+    </select>
+    </p></p>
+    <button class = "btn btn-danger" type = "submit">UPLOAD</button>
+    </form>
+
+    <!-- Alert div -->
+    <p>
+<div class="alert" id="ALT">
+    <strong>Attention!</strong> Enter the price using the dot <strong>NOT THE VIRGUE</strong>
+</div>
+    </p>
+
+    <!-- I want to use Javascript to handle the aller of price with ","-->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var priceInput = document.getElementById("price");
+    priceInput.addEventListener("input", function() {
+        var alert = document.getElementById("ALT");
+        alert.style.display = priceInput.value.includes(",") ? "block" : "none";
+    });
+});
+
+
+
+
+
+</script>
+<h5><a href="{{ url_for('homepage') }}"class="link-danger">Homepage</a></h5>
+{% endblock %}
+
+
+CREATE TABLE data1 (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+user_id INTEGER NOT NULL, barcode TEXT NOT NULL , materials TEXT NOT NULL, quantities INTEGER NOT NULL,
+price DECIMAL NOT NULL,tot_value DECIMAL ,time_of_buy DATATIME DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES users(id));
+
+
+ALTER TABLE data
+ADD COLUMN tot_value  DECIMAL NOT NULL AFTER price;
+
+DROP TABLE data;
+
+
+SELECT * FROM data1;

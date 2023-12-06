@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+<style>
+    h1 {
+        font-family: "Arial Black", sans-serif;
+        color: red;
+    }
+
+    h2 {
+        font-family: "Times New Roman", sans-serif;
+        color: green;
+    }
+</style>
+
+<title>
+    <form action="/balance" method="get">
+    <h1>
+    <strong>
+        SPLIT MATERIALS IN BUILDING SITES
+        </strong>
+        </h1>
+    </title>
+    <p><h1>SPLIT MATERIALS BUILDING SITES</h1></p>
+    <table class ="table table-boardered table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th><h2><strong>User</h2></strong></th>
+                <th><h2><strong>Barcode</h2></strong></th>
+                <th><h2><strong>Materials</strong></h2></th>
+                <th><h2><strong>Quantities</strong></h2></th>
+                <th><h2><strong>Price_to_sell</strong></h2></th>
+                <th><h2><strong>Tot_Value</strong></h2></th>
+                <th><h2><strong>Cantiere</strong></h2></th>
+                <th><h2><strong>Time_split</strong></h2></th>
+            </tr>
+        </p>
+    </thed>
+    <!--I'm going to write the names of the body of tables-->
+<tbody>
+    {% for riga in dati_split %}
+    <tr>
+        <td>{{riga.username}}</td>
+        <td>{{riga.barcode}}</td>
+        <td>{{riga.materials}}</td>
+        <td>{{riga.quantities}}</td>
+        <td>{{(riga.price_to_sell)|usd}}</td>
+        <td>{{ '{:.2f}'.format(riga.price_to_sell * riga.quantities) }} $</td>
+        <td>{{ riga.cantiere }} </td>
+        <td>{{riga.time_of_buy}}</td>
+    </tr>
+    {% endfor %}
+    </form>
+    <p><p>
+        <a href="{{ url_for('download_csv_split') }}" class="btn btn-primary">Scarica CSV Split</a>
+        </p></p>
+</tbody>
+    </form>
+    <h5><a href="{{ url_for('homepage') }}"class="link-danger">Homepage</a></h5>
+{% endblock %}

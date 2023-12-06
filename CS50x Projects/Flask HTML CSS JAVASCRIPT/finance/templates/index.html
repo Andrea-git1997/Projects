@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+<!-- Use CSS-->
+<style>
+    table { width : 100% ; /* Table has to cover all the page*/
+            border-collapse: collapse; /*Cells borders has to be realy near*/
+            margin-top: 20px; /*I have to put space on the top*/
+        }
+    th,td {
+             border: 1px solid #dddddd; /* Every cells has color border */
+            text-align: center; /* The text is in the center */
+            padding: 9px; /* Every cells has this px space */
+        }
+
+        th {
+            background-color: #f2f2f2; /*Color is light grey of cells background */
+            }
+        h2 {
+
+            font-family: 'Times New Roman', Times, serif;
+            color: red; /* Imposta il colore del testo su rosso */
+        }
+
+    </style>
+<title>
+    <h1><strong>Portfolio</strong></h1>
+</title>
+    <p><h1>Portfolio</h1></p>
+    <p>
+        <!--I'm going to add the names of columns intestation-->
+<table class ="table table-boardered table-striped">
+    <thead class="thead-light">
+        <tr>
+            <th><h2><strong>Symbol</strong></h2></th>
+            <th><h2><strong>Company</h2></strong></th>
+            <th><h2><strong>Shares</strong></h2></th>
+            <th><h2><strong>Price</strong></h2></th>
+            <th><h2><strong>TOT_Value</strong></h2></th>
+        </tr>
+    </p>
+</thed>
+<!--I'm going to write the names of the body of tables-->
+<tbody>
+    {% for stock in stocks %}
+    <tr>
+        <td>{{stock.symbol}}</td>
+        <td>{{stock.name}}</td>
+        <td>{{stock.total_shares}}</td>
+        <td>{{(stock.price)|usd}}</td>
+        <td>{{(stock.price * stock.total_shares)|usd}}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan = "4" align ="right">Cash</td>
+        <td>{{(cash)|usd}}</td>
+    </tr>
+    <tr>
+        <td colspan = "4" align ="right">Total_value</td>
+        <td>{{(total_value)|usd}}</td>
+    </tr>
+</tbody>
+</table>
+
+{% endblock %}

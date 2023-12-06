@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+<style>
+    h1 {
+        font-family: "Arial Black", sans-serif;
+        color: red;
+    }
+
+    h2 {
+        font-family: "Times New Roman", sans-serif;
+        color: green;
+    }
+</style>
+
+<title>
+    <h1>
+    <strong>
+        UPLOAD
+        </strong>
+        </h1>
+    </title>
+    <form action="/data" method="get">
+    <p><h1>DATABASE</h1></p>
+    <table class ="table table-boardered table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th><h2><strong>Barcode</h2></strong></th>
+                <th><h2><strong>Materials</strong></h2></th>
+                <th><h2><strong>TOT_quantities</strong></h2></th>
+                <th><h2><strong>Avarage_Price</strong></h2></th>
+                <th><h2><strong>Tot_Value</strong></h2></th>
+                <th><h2><strong>Latest_time_of_Upload</strong></h2></th>
+            </tr>
+        </p>
+    </thed>
+    <!--I'm going to write the names of the body of tables-->
+
+<tbody>
+    {% for riga in dati %}
+    <tr>
+        <td>{{riga.barcode}}</td>
+        <td>{{riga.materials}}</td>
+        <td>{{riga.total_quantities}}</td>
+        <td>{{(riga.average_price)|round(2)|usd}}</td>
+        <td>{{(riga.TOTAL_value)|round(2)|usd}}</td>
+        <td>{{riga.latest_time_of_buy}}</td>
+    </tr>
+    {% endfor %}
+    </form>
+    <p><p>
+        <a href="{{ url_for('download_csv') }}" class="btn btn-primary">Scarica CSV</a>
+        </p></p>
+</tbody>
+<h5><a href="{{ url_for('homepage') }}"class="link-danger">Homepage</a></h5>
+{% endblock %}

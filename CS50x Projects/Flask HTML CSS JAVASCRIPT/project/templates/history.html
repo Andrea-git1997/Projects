@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+<!-- Use CSS-->
+<style>
+   h1 {
+        font-family: "Arial Black", sans-serif;
+        color: red;
+    }
+
+    h2 {
+        font-family: "Times New Roman", sans-serif;
+        color: green;
+    }
+
+    .alert{
+
+        padding: 5px;
+        background-color: orange; /* color red*/
+        color: withe;
+        text-align:center;
+        display: none; /*don't show the alert initialy*/
+    }
+
+    </style>
+<title>
+    <form action="/history" method="get"></form>
+    <h1><strong>History</strong></h1>
+</title>
+    <p><h1>History</h1></p>
+    <p>
+        <h5><a href="{{ url_for('homepage') }}"class="link-danger">Homepage</a></h5>
+        <!--I'm going to add the names of columns intestation-->
+<table class ="table table-boardered table-striped">
+    <thead class="thead-light">
+        <tr>
+            <th><h2><strong>NAME</strong></h2></th>
+            <th><h2><strong>BARCODE</strong></h2></th>
+            <th><h2><strong>MATERIALS</strong></h2></th>
+            <th><h2><strong>QUANTITIES</strong></h2></th>
+            <th><h2><strong>PRICE</strong></h2></th>
+            <th><h2><strong>TOTAL_VALUE</strong></h2></th>
+            <th><h2><strong>TIME</strong></h2></th>
+        </tr>
+    </p>
+</thed>
+<!--I'm going to write the names of the body of tables-->
+<tbody>
+    {% for transaction in transactions %}
+    <tr>
+        <td>{{transaction.username}}</td>
+        <td>{{transaction.barcode}}</td>
+        <td>{{transaction.materials}}</td>
+        <td>{{transaction.quantities}}</td>
+        <td>{{transaction.price}}$</td>
+        <td>{{transaction.tot_value}}$</td>
+        <td>{{transaction.time_of_buy}}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+{% endblock %}

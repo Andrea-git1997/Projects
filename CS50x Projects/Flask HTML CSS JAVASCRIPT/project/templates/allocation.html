@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+<style>
+    h1 {
+        font-family: "Arial Black", sans-serif;
+        color: red;
+    }
+
+    h2 {
+        font-family: "Times New Roman", sans-serif;
+        color: green;
+    }
+
+    .alert{
+
+        padding: 5px;
+        background-color: orange; /* color red*/
+        color: withe;
+        text-align:center;
+        display: none; /*don't show the alert initialy*/
+        }
+</style>
+
+<title>
+    <h1>
+    <strong>
+        UPLOAD
+        </strong>
+        </h1>
+    </title>
+    <form action="{{ url_for('allocation') }}" method="post">
+    <p><h1>ALLOCATION</h1></p>
+    <p><h2>ALLOCATION TO CONSTRUCTION SITES!</h2></p>
+    <p><p>
+        <input type ="number" min = 0 name = "barcode" id= "barcode" placeholder="Barcode">
+    </p></p>
+    <p><p>
+        <input type ="number" min = 0 name = "quantities" id= "quantities" placeholder="Quantities">
+    </p></p>
+    <p><p>
+        <span>%<span>
+        <input type ="number" min = 0 name = "markup" id= "markup" placeholder="Markup" step = "0.01" max = "1">
+    </p></p>
+    <p></p>
+    <select name="cantiere" id="cantiere" required>
+    <option disabled selected>Seleziona cantiere</option>
+    <option>Chiari</option>
+    <option>Edolo</option>
+    <option>Esine</option>
+    </select>
+    <p><p><button class = "btn btn-success" type = "submit">Submit</button></p></p>
+
+     <!-- Alert div -->
+     <p>
+        <div class="alert" id="ALT">
+            <strong>Attention!</strong> Marcjup float handle using the dot <strong>NOT THE VIRGUE</strong> !!!remember <strong> 0.73 = 73% </strong>.
+        </div>
+    </p>
+
+    <!-- Javascript in order to pay attention of not put "," for handle float-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        var priceInput = document.getElementById("markup");
+        priceInput.addEventListener("input", function() {
+            var alert = document.getElementById("ALT");
+            alert.style.display = priceInput.value.includes(",") ? "block" : "none";
+        });
+    });
+
+    </script>
+    <h5><a href="{{ url_for('homepage') }}"class="link-danger">Homepage</a></h5>
+    </form>
+{% endblock %}
+
+
+CREATE TABLE cantieri (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+user_id INTEGER NOT NULL, barcode TEXT NOT NULL , materials TEXT NOT NULL, quantities INTEGER NOT NULL,
+price_to_sell DECIMAL NOT NULL,tot_value DECIMAL, cantiere  TEXT NOT NULL ,time_of_buy DATATIME DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES users(id));
